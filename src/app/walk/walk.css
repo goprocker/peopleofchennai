@@ -1,0 +1,183 @@
+html:has(.walk-root), body:has(.walk-root) { overflow: hidden; }
+/* People of Chennai — walkable city. Game HUD styling (dark, chunky, slanted). */
+.walk-root {
+  --w-ink: #fff8ec;
+  --w-gold: #ffb627;
+  --w-panel: rgba(22, 24, 36, 0.86);
+  --w-shadow: #0d0e16;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(#3a3631, #1c1d2a);
+  color: var(--w-ink);
+  font-family: var(--font-walk-body), system-ui, sans-serif;
+  touch-action: none;
+  user-select: none;
+  z-index: 50;
+}
+.walk-root kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.1em 0.45em;
+  margin-inline: 0.2em;
+  border-radius: 4px;
+  background: #fff8ec;
+  color: #1c1d2a;
+  font: 700 0.8em/1.4 var(--font-walk-display), sans-serif;
+  text-align: center;
+  box-shadow: 0 2px 0 #9b927f;
+}
+
+/* chips + buttons */
+.walk-chip {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  background: var(--w-panel);
+  color: var(--w-gold);
+  font: 800 0.8rem/1 var(--font-walk-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+}
+.walk-chip--accent { color: #fff; letter-spacing: 0.06em; font-size: 0.75rem; }
+.walk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.2rem 0.95rem 1.8rem;
+  border: 0;
+  background: var(--w-gold);
+  color: #17181f;
+  font: italic 800 1.35rem/1 var(--font-walk-display), sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+  box-shadow: 0 5px 0 var(--w-shadow);
+  transition: transform 0.12s, filter 0.12s;
+}
+.walk-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.walk-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.walk-btn--loading { background: #4d3f2b; color: var(--w-ink); font-size: 1rem; font-style: normal; cursor: progress; min-width: 18rem; }
+.walk-btn--sm { padding: 0.6rem 1.2rem; font-size: 1rem; }
+.walk-btn--ghost { background: #2b2d3d; color: var(--w-ink); }
+
+/* title screen */
+.walk-title {
+  position: absolute;
+  inset: 0;
+  padding: 1.75rem clamp(1rem, 4vw, 3rem);
+  background: linear-gradient(90deg, rgba(16, 17, 28, 0.82) 0%, rgba(16, 17, 28, 0.35) 55%, transparent 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.walk-title__body { margin-block: auto; max-width: 46rem; display: flex; flex-direction: column; align-items: flex-start; }
+.walk-title__pre { color: var(--w-gold); font: italic 800 clamp(1.4rem, 3vw, 2rem)/1 var(--font-walk-display), sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+.walk-title__h {
+  font: italic 800 clamp(4.5rem, 14vw, 10.5rem)/0.85 var(--font-walk-display), Impact, sans-serif;
+  text-transform: uppercase;
+  color: var(--w-ink);
+  text-shadow: 0 6px 0 var(--w-shadow);
+  margin: 0.1em 0 0.25em -0.04em;
+}
+.walk-title__tag { font-weight: 700; font-size: clamp(1rem, 2vw, 1.2rem); }
+.walk-title__sub { margin: 0.3rem 0 2rem; color: #c9c2b3; font-weight: 600; font-size: 0.95rem; }
+.walk-title__skip { margin-top: 1.4rem; color: #c9c2b3; font-size: 0.85rem; text-decoration: underline; text-underline-offset: 3px; }
+
+/* HUD */
+.walk-hud-tl { position: absolute; top: 1rem; left: 1rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; pointer-events: none; max-width: calc(100% - 2rem); }
+.walk-loc {
+  padding: 0.55rem 1.4rem 0.6rem 1rem;
+  background: var(--w-panel);
+  border-left: 6px solid;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+}
+.walk-loc small { display: block; color: #b9b3a6; font: 700 0.7rem/1 var(--font-walk-display); letter-spacing: 0.2em; text-transform: uppercase; }
+.walk-loc strong { display: block; font: italic 800 clamp(1.6rem, 4vw, 2.3rem)/1 var(--font-walk-display); text-transform: uppercase; letter-spacing: 0.02em; }
+.walk-hud-tr { position: absolute; top: 1rem; right: 1rem; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+.walk-map {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.5rem;
+  background: rgba(22, 24, 36, 0.6);
+}
+.walk-map button {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border: 0; background: none; color: #a9a39a; cursor: pointer;
+  font: 700 0.78rem/1 var(--font-walk-display); letter-spacing: 0.08em; text-transform: uppercase; text-align: left;
+}
+.walk-map button span { width: 8px; height: 8px; background: var(--c); transform: rotate(45deg); opacity: 0.6; }
+.walk-map button.is-here { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.walk-map button.is-here span { opacity: 1; box-shadow: 0 0 8px var(--c); }
+.walk-map button:hover { color: #fff; }
+
+.walk-prompt {
+  position: absolute; left: 50%; bottom: 22%; transform: translateX(-50%);
+  padding: 0.7rem 1.3rem; border: 0; cursor: pointer;
+  background: var(--w-panel); color: var(--w-ink);
+  font: italic 800 1.15rem/1 var(--font-walk-display); text-transform: uppercase; letter-spacing: 0.04em;
+  box-shadow: 0 0 0 2px var(--w-gold);
+  animation: walk-pop 0.25s ease-out;
+}
+@keyframes walk-pop { from { opacity: 0; transform: translate(-50%, 8px); } }
+.walk-keys { position: absolute; left: 1rem; bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; font: 700 0.85rem/1 var(--font-walk-display); text-transform: uppercase; letter-spacing: 0.08em; text-shadow: 0 1px 2px #000; pointer-events: none; }
+
+/* name tags in the 3D world */
+.walk-tag { display: flex; flex-direction: column; align-items: center; text-align: center; white-space: nowrap; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); color: #fff; font-family: var(--font-walk-body), sans-serif; }
+.walk-tag strong { font: italic 800 26px/1 var(--font-walk-display); text-transform: uppercase; }
+.walk-tag span { font-size: 15px; font-weight: 600; }
+.walk-tag i { color: #ffb627; font-style: normal; font-size: 18px; line-height: 1; }
+.walk-tag .walk-tag__badge { margin-bottom: 4px; padding: 2px 8px; border-radius: 3px; background: #1e5f43; color: #8ef0b9; font: 800 12px/1.3 var(--font-walk-display); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* modals */
+.walk-modal { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgba(10, 10, 18, 0.55); backdrop-filter: blur(3px); z-index: 20; }
+.walk-card {
+  width: min(32rem, 100%);
+  padding: 1.5rem;
+  background: #1c1d2a;
+  border-top: 6px solid var(--c, var(--w-gold));
+  box-shadow: 0 10px 0 var(--w-shadow), 0 30px 60px rgba(0, 0, 0, 0.5);
+  animation: walk-pop-card 0.2s ease-out;
+  user-select: text;
+}
+@keyframes walk-pop-card { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
+.walk-card__head { display: flex; gap: 1rem; align-items: center; }
+.walk-card__head img, .walk-card__avatar { width: 84px; height: 84px; object-fit: cover; flex: none; background: var(--c); display: grid; place-items: center; font: italic 800 2.5rem/1 var(--font-walk-display); }
+.walk-card small { color: var(--c, var(--w-gold)); font: 800 0.75rem/1 var(--font-walk-display); letter-spacing: 0.15em; text-transform: uppercase; }
+.walk-card h2 { font: italic 800 2rem/1 var(--font-walk-display); text-transform: uppercase; margin: 0.2rem 0; }
+.walk-card__head p { color: #c9c2b3; font-weight: 600; }
+.walk-card__bio { margin: 1.1rem 0 1.4rem; line-height: 1.55; color: #e6e0d4; }
+.walk-card__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.walk-finder input { width: 100%; margin: 0.8rem 0; padding: 0.75rem 0.9rem; border: 2px solid #3a3c52; background: #12131d; color: #fff; font: 600 1rem var(--font-walk-body); }
+.walk-finder input:focus { outline: none; border-color: var(--w-gold); }
+.walk-finder ul { max-height: 50vh; overflow: auto; list-style: none; padding: 0; margin: 0; }
+.walk-finder li button { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 1rem; padding: 0.7rem 0.6rem; border: 0; border-bottom: 1px solid #2c2e40; background: none; color: inherit; text-align: left; cursor: pointer; }
+.walk-finder li button:hover, .walk-finder li button:focus-visible { background: #26283a; outline: none; }
+.walk-finder strong { font: italic 800 1.2rem/1.1 var(--font-walk-display); text-transform: uppercase; }
+.walk-finder span { grid-column: 1; color: #aaa396; font-size: 0.85rem; }
+.walk-finder em { grid-row: 1 / span 2; grid-column: 2; align-self: center; font: 800 0.75rem var(--font-walk-display); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; }
+.walk-finder__empty { padding: 1rem 0; color: #aaa396; }
+
+/* touch joystick */
+.walk-stick { position: absolute; left: 1.5rem; bottom: 1.5rem; width: 120px; height: 120px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: 2px solid rgba(255, 255, 255, 0.3); display: grid; place-items: center; touch-action: none; }
+.walk-stick span { width: 52px; height: 52px; border-radius: 50%; background: rgba(255, 248, 236, 0.85); pointer-events: none; }
+
+@media (max-width: 720px) {
+  .walk-map { top: auto; bottom: 1rem; right: 0.5rem; transform: none; max-height: 40vh; overflow: auto; }
+  .walk-map button { font-size: 0.68rem; padding: 0.25rem 0.4rem; }
+  .walk-hud-tr { top: 6.5rem; right: 0.75rem; }
+  .walk-chip--accent { display: none; }
+  .walk-prompt { bottom: 32%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .walk-prompt, .walk-card { animation: none; }
+}
