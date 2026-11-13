@@ -44,7 +44,10 @@ export default async function HomePage() {
             we should meet — maybe it’s you.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/people" className={buttonStyles({ size: "lg" })}>
+            <Link href="/walk" className={buttonStyles({ size: "lg" })}>
+              Walk the city <ArrowRight aria-hidden className="size-4" />
+            </Link>
+            <Link href="/people" className={buttonStyles({ variant: "outline", size: "lg" })}>
               Meet the people
             </Link>
             <Link href="/submit" className={buttonStyles({ variant: "outline", size: "lg" })}>
